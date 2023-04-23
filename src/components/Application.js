@@ -39,10 +39,16 @@ export default function Application(props) {
   let dailyAppointments = getAppointmentsForDay(state, state.day)
 
   const appointmentsArray = dailyAppointments.map(appointment => {
-    return <Appointment 
-      key = {appointment.id}
-      {...appointment}
-    />
+    const interview = getInterview(state, appointment.interview);
+
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
   });
   
   return (
@@ -66,10 +72,8 @@ export default function Application(props) {
       <section className="schedule">
         {appointmentsArray}
         <Appointment 
-          key={appointment.id}
-          id={appointment.id}
-          time={appointment.time}
-          interview={interview} />
+          key="last"
+          time="5pm"/>
       </section>
     </main>
   );
