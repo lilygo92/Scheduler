@@ -14,5 +14,7 @@ export function getAppointmentsForDay(state, day) {
       result.push(elem);
     }
   }
+
+  console.log(result);
   return result;
 }
