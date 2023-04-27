@@ -53,7 +53,5 @@ export function getInterviewersForDay(state, day) {
     }
   }
 
-  console.log(result);
-
   return result;
 };

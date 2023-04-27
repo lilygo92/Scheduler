@@ -8,6 +8,7 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
+import axios from "axios";
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
@@ -33,19 +34,27 @@ export default function Appointment(props) {
     };
 
     transition(SAVING);
-    props.bookInterview(props.id, interview)
-      .then(() => transition(SHOW))
+    axios
+      .put(`/api/appointments/${props.id}`, { interview })
+      .then(() => {
+        props.bookInterview(props.id, interview)
+        transition(SHOW)
+      })
       .catch(error => transition(ERROR_SAVE, true));
   }
 
   const cancel = function() {
     transition(DELETING, true);
-    props.cancelInterview(props.id)
-      .then(() => transition(EMPTY))
+    axios
+      .delete((`/api/appointments/${props.id}`))
+      .then(() => {
+        props.cancelInterview(props.id)
+        transition(EMPTY)}
+      )
       .catch(error => transition(ERROR_DELETE, true));
   };
 
-  return <article className="appointment">
+  return <article className="appointment" data-testid="appointment">
     <Header
       time = {props.time}
     />
@@ -73,7 +82,7 @@ export default function Appointment(props) {
         onSave={save}
     />)}
     {mode === DELETING && <Status message="Deleting" />}
-    {mode === SAVING && <Status message="Confirming" />}
+    {mode === SAVING && <Status message="Saving" />}
     {mode === CONFIRM && (
       <Confirm
         message="Are you sure you would like to delete?"
@@ -83,13 +92,13 @@ export default function Appointment(props) {
       )}
     {mode === ERROR_SAVE && (
       <Error 
-      message={"Could not book appointment"} 
+      message={"Error saving appointment"} 
       onClose={back}
     />
     )}
     {mode === ERROR_DELETE && (
       <Error 
-      message={"Could not delete appointment"} 
+      message={"Error deleting appointment"} 
       onClose={back}
     />
     )}
