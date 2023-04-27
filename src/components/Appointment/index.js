@@ -21,7 +21,7 @@ export default function Appointment(props) {
   const ERROR_SAVE = "ERROR_SAVE";
 
   const interviewers = props.interviewers;
-  const {interview } = props|| {};
+  const { interview } = props|| {};
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   )
