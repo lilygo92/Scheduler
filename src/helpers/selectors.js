@@ -4,7 +4,7 @@ export function getAppointmentsForDay(state, day) {
   const appointments = {...state.appointments};
   let dayAppointments = []
   
-  state.days.map(obj => {
+  state.days.forEach(obj => {
     if (obj.name === day) {
       dayAppointments = obj.appointments;
     }
@@ -44,7 +44,7 @@ export function getInterviewersForDay(state, day) {
   const interviewers = {...state.interviewers};
   let dayInterviewers = []
   
-  state.days.map(obj => {
+  state.days.forEach(obj => {
     if (obj.name === day) {
       dayInterviewers = obj.interviewers;
     }
