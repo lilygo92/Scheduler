@@ -7,6 +7,7 @@ import useApplicationData from "hooks/useApplicationData";
 
 
 export default function Application() {
+  // import all the helper functions
   const {
     state,
     setDay,
@@ -14,10 +15,11 @@ export default function Application() {
     cancelInterview
   } = useApplicationData();
   
-
+  // get the daily appointments and daily interviewers
   let dailyAppointments = getAppointmentsForDay(state, state.day);
   let dailyInterviewers = getInterviewersForDay(state, state.day);
   
+  // render all the appointments for a given day
   const appointmentsArray = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
 

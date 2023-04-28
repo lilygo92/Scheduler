@@ -1,3 +1,4 @@
+// get the appointments for a given day
 export function getAppointmentsForDay(state, day) {
   const result = []
   const appointments = {...state.appointments};
@@ -18,6 +19,7 @@ export function getAppointmentsForDay(state, day) {
   return result;
 }
 
+// get the names of the student and interviewer to display in the application
 export function getInterview(state, interview) {
   if (!interview) {
     return null;
@@ -36,6 +38,7 @@ export function getInterview(state, interview) {
   return null;
 }
 
+// get all the interviewers for a given day
 export function getInterviewersForDay(state, day) {
   const result = []
   const interviewers = {...state.interviewers};

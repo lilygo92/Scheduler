@@ -11,6 +11,8 @@ export default function useApplicationData() {
     interviewers: {}
   })
 
+  // update the amount of spots remaining on the sidebar after either booking or canceling an appointment
+  // run inside bookInterview and cancelInterview functions
   const updateSpots = function(state, appointments) {
     let spots = 0;
     const dayObj = state.days.find(d => d.name === state.day);
@@ -25,6 +27,7 @@ export default function useApplicationData() {
     return state.days.map(d => d.name === state.day ? day : d) 
   }
 
+  // create an appointments object by passing an id and interview, and insert it into the state
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -44,6 +47,7 @@ export default function useApplicationData() {
     })  
   }
 
+  // delete an appointment object with a specific id, and update the state to remove it
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -63,10 +67,10 @@ export default function useApplicationData() {
     });
   }
   
-
+  // make simultaneous get requests to the scheduler api, then set state using the returned data
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:8001/';
-    
+
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),

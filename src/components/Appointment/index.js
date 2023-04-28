@@ -27,6 +27,9 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   )
 
+  // transition to saving mode
+  // send a put request to the url that corresponds to the id of the appointment
+  // book the interview and transition to show mode
   const save = function(name, interviewer) {
     const interview = {
       student: name,
@@ -43,6 +46,9 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
+  // transition to deleting mode
+  // send a delete request to the url that corresponds to the id of the appointment
+  // delete the interview and transition to empty mode
   const cancel = function() {
     transition(DELETING, true);
     axios
