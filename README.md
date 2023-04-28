@@ -4,6 +4,8 @@ Interview Scheduler is a single page web app built with React. With this applica
 
 ## Setup
 
+Clone this repo using ```git clone git@github.com:lilygo92/Scheduler.git```
+
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
@@ -23,3 +25,11 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+axios: ^1.4.0
+classnames: ^2.2.6
+normalize.css: ^8.0.1
+react: ^16.9.0
+react-dom: ^16.9.0
+react-scripts: 3.4.4
