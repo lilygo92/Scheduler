@@ -65,12 +65,8 @@ export default function useApplicationData() {
   
 
   useEffect(() => {
-    const routes = {
-      "GET_DAYS":     `http://localhost:8001/api/days`,
-      "GET_APPOINTMENTS": `http://localhost:8001/api/appointments`,
-      "GET_INTERVIEWERS": `http://localhost:8001/api/interviewers`
-    }
     axios.defaults.baseURL = 'http://localhost:8001/';
+    
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
